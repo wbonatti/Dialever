@@ -1,0 +1,32 @@
+{
+    "name": "Dialever",
+    "description": "A Slim Framework",
+    "license": "Prioritary",
+    "authors": [
+        {
+            "name": "Sonny Casini Blum",
+            "email": "sonnycblum@gmail.com"
+        },
+        {
+            "name": "Wesley Bonatti",
+            "email": "w.bonatti@hotmail.com"
+        }
+    ],
+
+    "require": {
+        "slim/slim": "^3.0",
+        "slim/twig-view": "^1.0",
+        "monolog/monolog": "^1.17",
+        "swiftmailer/swiftmailer": "@stable",
+        "illuminate/database" : "*",
+        "php": ">=5.5.0"
+    },
+    "autoload" :{
+        "classmap": [
+            "src/model",
+            "src/controller",
+            "src/dao"
+        ]
+    }
+
+}
