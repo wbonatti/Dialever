@@ -16,6 +16,8 @@
 		<a href="/public/index.php/companies">Empresas</a>
 		<br>
 		<a href="/public/index.php/mailConfigs">Configuracao</a>
+        <br>
+        <a href="/public/index.php/samples">Amostras</a>
 
 
 

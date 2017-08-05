@@ -9,6 +9,7 @@ require "impl/notification_routes.php";
 require "impl/proposal_routes.php";
 require "impl/companies_routes.php";
 require "impl/mail_conf_routes.php";
+require "impl/samples_routes.php";
 
 
 $app->get('/', function ($request, $response, $args) {
