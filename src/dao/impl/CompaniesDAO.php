@@ -9,8 +9,11 @@
 class CompaniesDAO extends GenericDAO
 {
 
-    public function getCompanies(){
-        return $this->app->database->table(Companies::TABLE)->get();
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app, Companies::TABLE);
     }
-
 }

@@ -12,3 +12,11 @@ $app->get('/companies', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/companies/{id}', function ($request, $response, $args) {
+
+    $controller = new CompaniesController($this);
+    $return = $controller->getCompaniesById($args['id']);
+
+    return $response->withJson($return);
+});

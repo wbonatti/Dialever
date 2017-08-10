@@ -16,7 +16,23 @@ class PaymentConditionsController extends GenericController
 
             $dao = new PaymentConditionsDAO($this->app);
 
-            $result = $dao->getPaymentMethods();
+            $result = $dao->getAll();
+
+            return $this->criaArray(new PaymentConditions(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function getPaymentMethodsById($id){
+
+        try {
+            $this->app->logger->info("Controller - buscar formas de pagamento por id");
+
+            $dao = new PaymentConditionsDAO($this->app);
+
+            $result = $dao->getById($id);
 
             return $this->criaArray(new PaymentConditions(),$result);
         }catch (Exception $e){

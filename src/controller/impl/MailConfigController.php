@@ -16,7 +16,23 @@ class MailConfigController extends GenericController
 
             $dao = new MailConfigDAO($this->app);
 
-            $result = $dao->getMailConfigs();
+            $result = $dao->getAll();
+
+            return $this->criaArray(new MailConfig(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function getMailConfigsById($id){
+
+        try {
+            $this->app->logger->info("Controller - buscar configuracoes de email por id");
+
+            $dao = new MailConfigDAO($this->app);
+
+            $result = $dao->getById($id);
 
             return $this->criaArray(new MailConfig(),$result);
         }catch (Exception $e){

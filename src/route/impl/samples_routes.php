@@ -12,3 +12,11 @@ $app->get('/samples', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/samples/{id}', function ($request, $response, $args) {
+
+    $controller = new SampleController($this);
+    $return = $controller->getSamplesById($args['id']);
+
+    return $response->withJson($return);
+});

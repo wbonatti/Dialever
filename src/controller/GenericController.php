@@ -28,7 +28,7 @@ class GenericController
             return ;
         }
 
-        if(!is_array($itens)){
+        if(empty($itens[1])){
             return $objeto->convertArray($itens);
         }
 

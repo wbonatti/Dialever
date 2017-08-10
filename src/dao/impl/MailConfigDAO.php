@@ -8,9 +8,12 @@
  */
 class MailConfigDAO extends GenericDAO
 {
-
-    public function getMailConfigs(){
-        return $this->app->database->table(MailConfig::TABLE)->get();
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app, MailConfig::TABLE);
     }
 
 }

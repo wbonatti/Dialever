@@ -8,10 +8,12 @@
  */
 class PaymentConditionsDAO extends GenericDAO
 {
-
-    public function getPaymentMethods()
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
     {
-        return $this->app->database->table(PaymentConditions::TABLE)->get();
+        parent::__construct($app, PaymentConditions::TABLE);
     }
 
 }

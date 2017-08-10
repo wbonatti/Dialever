@@ -16,7 +16,23 @@ class UserController extends GenericController
 
             $dao = new UserDAO($this->app);
 
-            $result = $dao->getUsers();
+            $result = $dao->getAll();
+
+            return $this->criaArray(new User(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function getUsersById($id){
+
+        try {
+            $this->app->logger->info("Controller - buscar usuarios por id");
+
+            $dao = new UserDAO($this->app);
+
+            $result = $dao->getById($id);
 
             return $this->criaArray(new User(),$result);
         }catch (Exception $e){

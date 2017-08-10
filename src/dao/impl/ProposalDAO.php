@@ -8,9 +8,12 @@
  */
 class ProposalDAO extends GenericDAO
 {
-
-    public function getProposals(){
-        return $this->app->database->table(Proposal::TABLE)->get();
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app, Proposal::TABLE);
     }
 
 }

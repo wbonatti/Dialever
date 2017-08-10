@@ -16,7 +16,23 @@ class NotificationController extends GenericController
 
             $dao = new NotificationDAO($this->app);
 
-            $result = $dao->getNotifications();
+            $result = $dao->getAll();
+
+            return $this->criaArray(new Notification(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function getNotificationsById($id){
+
+        try {
+            $this->app->logger->info("Controller - buscar notificacao por id");
+
+            $dao = new NotificationDAO($this->app);
+
+            $result = $dao->getById($id);
 
             return $this->criaArray(new Notification(),$result);
         }catch (Exception $e){

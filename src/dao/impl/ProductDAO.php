@@ -8,9 +8,12 @@
  */
 class ProductDAO extends GenericDAO
 {
-
-    public function getProducts(){
-        return $this->app->database->table(Product::TABLE)->get();
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app, Product::TABLE);
     }
 
 }

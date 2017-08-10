@@ -13,7 +13,7 @@ return [
         // Monolog settings
         'logger' => [
             'name' => 'slim-app',
-            'path' => __DIR__ . '/../logs/info.log',
+            'path' => __DIR__ . '/../../logs/info.log',
             'level' => \Monolog\Logger::DEBUG,
             'maxFiles' => '5'
         ],
@@ -31,10 +31,10 @@ return [
 
         // Mailer
         'mailer' => [
-            'smtp' => 'smtp.lizon.com.br',
+            'smtp' => 'smtp.com.br',
             'port' => '587',
             'encrypt' => 'ssl',
-            'user' => 'reservas@lizon.com.br',
+            'user' => 'com.br',
             'pass' => 'curitiba7777',
         ],
     ],

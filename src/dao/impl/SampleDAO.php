@@ -8,11 +8,19 @@
  */
 class SampleDAO extends GenericDAO
 {
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app, Sample::TABLE);
+    }
+
 
     public function getSamples(){
-        return $this->app->database->table(Sample::TABLE)
-                                   ->leftJoin(Customer::TABLE,Customer::TABLE.".id", "=" ,Sample::TABLE.".customer_id")
-                                   ->select(Sample::TABLE.'.*', Customer::TABLE.'.name')->get();
+        return $this->app->database->table($this->table)
+                                   ->leftJoin(Customer::TABLE,Customer::TABLE.".id", "=" ,$this->table.".customer_id")
+                                   ->select($this->table.'.*', Customer::TABLE.'.name')->get();
     }
 
 }

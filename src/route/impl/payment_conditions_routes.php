@@ -12,3 +12,11 @@ $app->get('/payments', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/payments/{id}', function ($request, $response, $args) {
+
+    $controller = new PaymentConditionsController($this);
+    $return = $controller->getPaymentMethodsById($args['id']);
+
+    return $response->withJson($return);
+});

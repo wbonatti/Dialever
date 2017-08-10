@@ -3,12 +3,6 @@
 
 $container = $app->getContainer();
 
-// view renderer
-$container['renderer'] = function ($c) {
-    $settings = $c['settings']['renderer'];
-    return new Slim\Views\PhpRenderer($settings['template_path']);
-};
-
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c['settings']['logger'];
@@ -44,21 +38,17 @@ $container['view'] = function ($c) {
 };
 
 // 404 error
-$c['notFoundHandler'] = function ($c) {
+$container['notFoundHandler'] = function ($c) {
     return function ($request, $response) use ($c) {
         $c['logger']->info("Not found: " . $request->getMethod() . " on " . $request->getUri());
-        return $c['response']
-            ->withStatus(404)
-            ->withJson('Page not found');
+        return $c['response']->withJson('Page not found', 404);
     };
 };
 
 // 500 error
-$c['phpErrorHandler'] = function ($c) {
-    return function ($request, $response, $error) use ($c) {
-        $c['logger']->info("Something went wrong: when " . $request->getMethod() . " on " . $request->getUri()." Error: " . $error);
-        return $c['response']
-            ->withStatus(500)
-            ->withJson('Error: ' . $error);
+$container['errorHandler'] = function ($c) {
+    return function ($request, $response, $exception) use ($c) {
+        $c['logger']->info("Something went wrong: when " . $request->getMethod() . " on " . $request->getUri()." Error: " . $exception);
+        return $c['response']->withJson('Error: ' . $exception, 500);
     };
 };

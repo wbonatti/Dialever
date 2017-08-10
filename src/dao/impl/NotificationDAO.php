@@ -8,9 +8,12 @@
  */
 class NotificationDAO extends GenericDAO
 {
-
-    public function getNotifications(){
-        return $this->app->database->table(Notification::TABLE)->get();
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app, Notification::TABLE);
     }
 
 }

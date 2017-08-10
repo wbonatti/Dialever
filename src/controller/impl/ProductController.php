@@ -16,7 +16,23 @@ class ProductController extends GenericController
 
             $dao = new ProductDAO($this->app);
 
-            $result = $dao->getProducts();
+            $result = $dao->getAll();
+
+            return $this->criaArray(new Product(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function getProductsById($id){
+
+        try {
+            $this->app->logger->info("Controller - buscar produtos por id");
+
+            $dao = new ProductDAO($this->app);
+
+            $result = $dao->getById($id);
 
             return $this->criaArray(new Product(),$result);
         }catch (Exception $e){

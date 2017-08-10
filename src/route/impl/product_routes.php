@@ -13,3 +13,11 @@ $app->get('/products', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/products/{id}', function ($request, $response, $args) {
+
+    $controller = new ProductController($this);
+    $return = $controller->getProductsById($args['id']);
+
+    return $response->withJson($return);
+});

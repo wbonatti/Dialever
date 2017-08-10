@@ -8,9 +8,13 @@
  */
 class CustomerDAO extends GenericDAO
 {
-
-    public function getCustomers()
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
     {
-        return $this->app->database->table(Customer::TABLE)->get();
+        parent::__construct($app, Customer::TABLE);
     }
+
+
 }

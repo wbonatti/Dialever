@@ -37,3 +37,11 @@ $app->get('/users', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/users/{id}', function ($request, $response, $args) {
+
+    $controller = new UserController($this);
+    $return = $controller->getUsersById($args['id']);
+
+    return $response->withJson($return);
+});

@@ -9,9 +9,16 @@
 
 class UserDAO extends GenericDAO
 {
+    /**
+     * DAO constructor.
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app, User::TABLE);
+    }
 
     public function doLogin($user, $pass){
-        $records = $this->app->database->table(User::TABLE)->where("login","=",$user)->get();
+        $records = $this->app->database->table($this->table)->where("login","=",$user)->get();
 
         if(empty($records)) {
             //Usuario nao encontrado!
@@ -34,10 +41,6 @@ class UserDAO extends GenericDAO
 
         return $login;
 
-    }
-
-    public function getUsers(){
-        return $this->app->database->table(User::TABLE)->get();
     }
 
 }

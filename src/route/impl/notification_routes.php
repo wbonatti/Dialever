@@ -12,3 +12,11 @@ $app->get('/notifications', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/notifications/{id}', function ($request, $response, $args) {
+
+    $controller = new NotificationController($this);
+    $return = $controller->getNotificationsById($args['id']);
+
+    return $response->withJson($return);
+});

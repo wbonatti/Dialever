@@ -13,3 +13,11 @@ $app->get('/customers', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/customers/{id}', function ($request, $response, $args) {
+
+    $controller = new CustomerController($this);
+    $return = $controller->getCustomersById($args['id']);
+
+    return $response->withJson($return);
+});

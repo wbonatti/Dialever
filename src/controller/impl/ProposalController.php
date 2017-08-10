@@ -16,7 +16,23 @@ class ProposalController extends GenericController
 
             $dao = new ProposalDAO($this->app);
 
-            $result = $dao->getProposals();
+            $result = $dao->getAll();
+
+            return $this->criaArray(new Proposal(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function getProposalsById($id){
+
+        try {
+            $this->app->logger->info("Controller - buscar propostas por id");
+
+            $dao = new ProposalDAO($this->app);
+
+            $result = $dao->getById($id);
 
             return $this->criaArray(new Proposal(),$result);
         }catch (Exception $e){

@@ -1,4 +1,4 @@
-C<?php
+<?php
 
 /**
  * Created by PhpStorm.
@@ -16,7 +16,23 @@ class CustomerController extends GenericController
 
             $dao = new CustomerDAO($this->app);
 
-            $result = $dao->getCustomers();
+            $result = $dao->getAll();
+
+            return $this->criaArray(new Customer(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function getCustomersById($id){
+
+        try {
+            $this->app->logger->info("Controller - buscar clientes por id");
+
+            $dao = new CustomerDAO($this->app);
+
+            $result = $dao->getById($id);
 
             return $this->criaArray(new Customer(),$result);
         }catch (Exception $e){

@@ -12,3 +12,11 @@ $app->get('/mailConfigs', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/mailConfigs/{id}', function ($request, $response, $args) {
+
+    $controller = new MailConfigController($this);
+    $return = $controller->getMailConfigsById($args['id']);
+
+    return $response->withJson($return);
+});
