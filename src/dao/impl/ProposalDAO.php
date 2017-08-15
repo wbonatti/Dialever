@@ -13,7 +13,7 @@ class ProposalDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, Proposal::TABLE);
+        parent::__construct($app, new Proposal());
     }
 
 }

@@ -19,6 +19,19 @@ class Companies extends Model implements GenericModel
      */
     protected $table = self::TABLE;
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['id', 'code', 'name', 'real_name', 'cnpj'];
 
     public function convertArray($array)
     {
@@ -27,6 +40,21 @@ class Companies extends Model implements GenericModel
             'name' => $array['name'],
             'realName' => $array['real_name']
         );
+    }
+
+    public static function createModel($array)
+    {
+        $companies =  new Companies();
+        if(!empty($array['id'])){
+            $companies = Companies::find($array['id']);
+        }
+        $companies->code = $array['code'];
+        $companies->name = $array['name'];
+        $companies->real_name = $array['real_name'];
+        $companies->cnpj = $array['cnpj'];
+
+        return $companies;
+
     }
 
 }

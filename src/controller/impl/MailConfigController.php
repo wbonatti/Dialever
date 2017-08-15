@@ -41,4 +41,41 @@ class MailConfigController extends GenericController
 
     }
 
+    public function saveMailConfig($id, $module, $email, $name){
+
+        try {
+            $this->app->logger->info("Controller - salvando configuracoes de email");
+
+            $dao = new MailConfigDAO($this->app);
+
+            $result = $dao->save(MailConfig::createModel([
+                'id' => $id,
+                'module' => $module,
+                'email' => $email,
+                'name' => $name,
+            ]));
+
+            return $this->criaArray(new MailConfig(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function deleteMailConfig($id){
+
+        try {
+            $this->app->logger->info("Controller - deletando configuracoes de email");
+
+            $dao = new MailConfigDAO($this->app);
+
+            $result = $dao->delete($id);
+
+            return $this->criaArray(new MailConfig(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
 }

@@ -13,7 +13,7 @@ class CustomerDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, Customer::TABLE);
+        parent::__construct($app, new Customer());
     }
 
 

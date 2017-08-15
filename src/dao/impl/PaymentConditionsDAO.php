@@ -13,7 +13,7 @@ class PaymentConditionsDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, PaymentConditions::TABLE);
+        parent::__construct($app, new PaymentConditions());
     }
 
 }

@@ -13,7 +13,7 @@ class ProductDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, Product::TABLE);
+        parent::__construct($app, new Product());
     }
 
 }

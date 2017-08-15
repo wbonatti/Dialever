@@ -14,7 +14,7 @@ class UserDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, User::TABLE);
+        parent::__construct($app, new User());
     }
 
     public function doLogin($user, $pass){

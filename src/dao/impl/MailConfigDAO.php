@@ -13,7 +13,7 @@ class MailConfigDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, MailConfig::TABLE);
+        parent::__construct($app, new MailConfig());
     }
 
 }

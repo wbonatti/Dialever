@@ -41,4 +41,47 @@ class UserController extends GenericController
 
     }
 
+    public function saveUser($id, $name, $assing, $phone, $login, $email, $code, $pass){
+
+        try {
+            $this->app->logger->info("Controller - Salvando usuario");
+
+            $dao = new UserDAO($this->app);
+
+            $user = User::createModel([
+                'id' => $id,
+                'name' => $name,
+                'login' => $login,
+                'pass' => hash("sha256",$pass),
+                'signature' => $assing,
+                'phone' => $phone,
+                'email' => $email,
+                'code' => $code,
+            ]);
+
+            $result = $dao->save($user);
+
+            return $this->criaArray(new User(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function deleteUser($id){
+
+        try {
+            $this->app->logger->info("Controller - deletar usuarios");
+
+            $dao = new UserDAO($this->app);
+
+            $result = $dao->delete($id);
+
+            return $this->criaArray(new User(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
 }

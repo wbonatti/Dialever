@@ -45,3 +45,19 @@ $app->get('/users/{id}', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/user/save', function ($request, $response, $args) {
+
+    $controller = new UserController($this);
+    $return = $controller->saveUser(103,"teste","teste","123456789","tete","tese",0,"qweasd");
+
+    return $response->withJson($return);
+});
+
+$app->get('/user/delete/{id}', function ($request, $response, $args) {
+
+    $controller = new UserController($this);
+    $return = $controller->deleteUser($args['id']);
+
+    return $response->withJson($return);
+});

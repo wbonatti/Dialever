@@ -11,4 +11,6 @@ interface GenericModel
 
     public function convertArray($array);
 
+    public static function createModel($array);
+
 }

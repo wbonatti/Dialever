@@ -12,17 +12,6 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
-// Service factory for the ORM
-$container['database'] = function ($container) {
-    $capsule = new \Illuminate\Database\Capsule\Manager;
-    $capsule->addConnection($container['settings']['database']);
-
-    $capsule->setAsGlobal();
-    $capsule->bootEloquent();
-
-    return $capsule;
-};
-
 // twig
 $container['view'] = function ($c) {
     $path = $c['settings']['renderer']['template_path'];
@@ -52,3 +41,16 @@ $container['errorHandler'] = function ($c) {
         return $c['response']->withJson('Error: ' . $exception, 500);
     };
 };
+
+// Service factory for the ORM
+$capsule = new \Illuminate\Database\Capsule\Manager;
+$capsule->addConnection($container['settings']['database']);
+
+// Set the event dispatcher used by Eloquent models... (optional)
+$capsule->setEventDispatcher(new \Illuminate\Events\Dispatcher(new \Illuminate\Container\Container));
+
+// Make this Capsule instance available globally via static methods... (optional)
+$capsule->setAsGlobal();
+
+// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+$capsule->bootEloquent();

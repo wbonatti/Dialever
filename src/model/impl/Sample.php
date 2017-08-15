@@ -19,6 +19,13 @@ class Sample extends Model implements GenericModel
      */
     protected $table = self::TABLE;
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
 
     public function convertArray($array)
     {

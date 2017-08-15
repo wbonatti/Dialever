@@ -19,6 +19,19 @@ class MailConfig extends Model implements GenericModel
      */
     protected $table = self::TABLE;
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['key_module', 'email', 'name'];
 
     public function convertArray($array)
     {
@@ -28,5 +41,19 @@ class MailConfig extends Model implements GenericModel
             'email' => $array['email'],
             'name' => $array['name']
         );
+    }
+
+    public static function createModel($array)
+    {
+        $mail =  new MailConfig();
+        if(!empty($array['id'])){
+            $mail = MailConfig::find($array['id']);
+        }
+        $mail->key_module = $array['module'];
+        $mail->email = $array['email'];
+        $mail->name = $array['name'];
+
+        return $mail;
+
     }
 }

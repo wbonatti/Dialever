@@ -14,6 +14,6 @@ class CompaniesDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, Companies::TABLE);
+        parent::__construct($app, new Companies());
     }
 }

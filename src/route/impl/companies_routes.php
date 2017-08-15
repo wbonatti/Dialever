@@ -20,3 +20,19 @@ $app->get('/companies/{id}', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/companie/save', function ($request, $response, $args) {
+
+    $controller = new CompaniesController($this);
+    $return = $controller->saveCompanies("",0,"tete","teste","01.123.1233331");
+
+    return $response->withJson($return);
+});
+
+$app->get('/companie/delete/{id}', function ($request, $response, $args) {
+
+    $controller = new CompaniesController($this);
+    $return = $controller->deleteCompanies($args['id']);
+
+    return $response->withJson($return);
+});

@@ -20,3 +20,19 @@ $app->get('/notifications/{id}', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/notification/save', function ($request, $response, $args) {
+
+    $controller = new NotificationController($this);
+    $return = $controller->saveNotification("","teste te","teste",1,true);
+
+    return $response->withJson($return);
+});
+
+$app->get('/notification/delete/{id}', function ($request, $response, $args) {
+
+    $controller = new NotificationController($this);
+    $return = $controller->deleteNotification($args['id']);
+
+    return $response->withJson($return);
+});

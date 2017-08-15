@@ -20,3 +20,19 @@ $app->get('/mailConfigs/{id}', function ($request, $response, $args) {
 
     return $response->withJson($return);
 });
+
+$app->get('/mailConfig/save', function ($request, $response, $args) {
+
+    $controller = new MailConfigController($this);
+    $return = $controller->saveMailConfig("","teste","teste@teste.com","testes");
+
+    return $response->withJson($return);
+});
+
+$app->get('/mailConfig/delete/{id}', function ($request, $response, $args) {
+
+    $controller = new MailConfigController($this);
+    $return = $controller->deleteMailConfig($args['id']);
+
+    return $response->withJson($return);
+});

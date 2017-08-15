@@ -13,7 +13,7 @@ class SampleDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, Sample::TABLE);
+        parent::__construct($app, new Sample());
     }
 
 

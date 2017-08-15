@@ -13,7 +13,7 @@ class NotificationDAO extends GenericDAO
      */
     public function __construct($app)
     {
-        parent::__construct($app, Notification::TABLE);
+        parent::__construct($app, new Notification());
     }
 
 }

@@ -41,4 +41,42 @@ class NotificationController extends GenericController
 
     }
 
+    public function saveNotification($id, $message, $module, $user, $active){
+
+        try {
+            $this->app->logger->info("Controller - salvando notificacao");
+
+            $dao = new NotificationDAO($this->app);
+
+            $result = $dao->save(Notification::createModel([
+                'id' => $id,
+                'message' => $message,
+                'module' => $module,
+                'user_id' => $user,
+                'active' => $active,
+            ]));
+
+            return $this->criaArray(new Notification(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
+    public function deleteNotification($id){
+
+        try {
+            $this->app->logger->info("Controller - deletar notificacao");
+
+            $dao = new NotificationDAO($this->app);
+
+            $result = $dao->delete($id);
+
+            return $this->criaArray(new Notification(),$result);
+        }catch (Exception $e){
+            return $this->criaArrayErro($e->getMessage());
+        }
+
+    }
+
 }
